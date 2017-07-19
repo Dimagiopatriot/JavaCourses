@@ -1,4 +1,4 @@
-package HelloWorld.model;
+package task1.model;
 
 /*
  * Model

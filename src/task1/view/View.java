@@ -1,4 +1,4 @@
-package HelloWorld.view;
+package task1.view;
 
 /*
  * View

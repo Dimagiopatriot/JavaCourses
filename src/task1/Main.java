@@ -1,11 +1,11 @@
-package HelloWorld;
+package task1;
 
-import HelloWorld.controller.Controller;
-import HelloWorld.model.Model;
-import HelloWorld.view.View;
+import task1.controller.Controller;
+import task1.model.Model;
+import task1.view.View;
 
 /*
- * HelloWorld.Main
+ * task1.Main
  *
  * v 1.0
  *

@@ -1,7 +1,7 @@
-package HelloWorld.controller;
+package task1.controller;
 
-import HelloWorld.model.Model;
-import HelloWorld.view.View;
+import task1.model.Model;
+import task1.view.View;
 
 import java.util.Scanner;
 
@@ -38,7 +38,7 @@ public class Controller {
     /**
      * Construct united result string from parts from scanner
      *
-     * @return value for HelloWorld.model result string
+     * @return value for task1.model result string
      * */
     private String getValueFromScanner() {
         view.showMessage(View.INPUT_MESSAGE);
