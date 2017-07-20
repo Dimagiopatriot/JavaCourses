@@ -11,10 +11,13 @@ package task2.view;
  * */
 public class View {
 
+    //Input message
     private static final String INPUT_MESSAGE = "Input your number in range: ";
 
+    //General error message
     private static final String ERROR_MESSAGE = "Your error: ";
 
+    //Error types
     public static final String OUTPUT_FORMAT_ERROR = "your output is not integer";
     public static final String INPUT_BEFORE_ERROR = "you input this number before";
     public static final String OUT_OF_RANGE_ERROR = "your number out of range";

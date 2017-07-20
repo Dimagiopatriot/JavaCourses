@@ -13,9 +13,12 @@ import java.util.ArrayList;
  * */
 public class Model {
 
+    //Statistic
     private ArrayList<Integer> statistic = new ArrayList<>();
+    //Searchable number
     private int searchableNumber;
 
+    //Constants
     private static final String YOUR_ANSWERS = "Your statistic: ";
     private static final String SEARCHABLE_NUMBER = "Searchable number: ";
 
