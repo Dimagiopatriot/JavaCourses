@@ -7,7 +7,7 @@ import task2.view.View;
 /*
  * task2.Main
  *
- * v 1.0
+ * v 1.0.1
  *
  * 20/07/2017
  *
