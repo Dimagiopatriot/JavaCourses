@@ -1,27 +1,26 @@
-package task2;
+package main.java.task1;
 
-import task2.controller.Controller;
-import task2.model.Model;
-import task2.view.View;
+
+import main.java.task1.controller.Controller;
+import main.java.task1.model.Model;
+import main.java.task1.view.View;
 
 /*
- * task2.Main
+ * task1.Main
  *
- * v 1.0.1
+ * v 1.0
  *
- * 20/07/2017
+ * 18/07/2017
  *
  * Created by Dmitriy Smishnyi
  * */
 public class Main {
-
     public static void main(String[] args) {
         //Initialization
         Model model = new Model();
         View view = new View();
         Controller controller = new Controller(model, view);
-
-        //run
+        //Start executing
         controller.process();
     }
 }

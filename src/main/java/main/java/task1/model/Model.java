@@ -1,4 +1,4 @@
-package task1.model;
+package main.java.task1.model;
 
 /*
  * Model

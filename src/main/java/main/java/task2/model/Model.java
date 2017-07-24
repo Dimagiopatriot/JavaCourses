@@ -1,6 +1,6 @@
-package task2.model;
+package main.java.task2.model;
 
-import task2.view.View;
+import main.java.task2.view.View;
 
 import java.util.ArrayList;
 

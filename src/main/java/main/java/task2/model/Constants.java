@@ -1,4 +1,4 @@
-package task2.model;
+package main.java.task2.model;
 
 /**
  * Created by troll on 23.07.2017.

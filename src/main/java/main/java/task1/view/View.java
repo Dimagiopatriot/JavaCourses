@@ -1,4 +1,4 @@
-package task1.view;
+package main.java.task1.view;
 
 /*
  * View

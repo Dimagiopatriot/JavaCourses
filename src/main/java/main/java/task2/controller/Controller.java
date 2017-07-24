@@ -1,8 +1,9 @@
-package task2.controller;
+package main.java.task2.controller;
 
-import task2.model.Constants;
-import task2.model.Model;
-import task2.view.View;
+
+import main.java.task2.model.Constants;
+import main.java.task2.model.Model;
+import main.java.task2.view.View;
 
 import java.util.Scanner;
 

@@ -1,7 +1,8 @@
-package task1.controller;
+package main.java.task1.controller;
 
-import task1.model.Model;
-import task1.view.View;
+
+import main.java.task1.model.Model;
+import main.java.task1.view.View;
 
 import java.util.Scanner;
 
