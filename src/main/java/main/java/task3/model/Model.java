@@ -1,5 +1,6 @@
 package main.java.task3.model;
 
+import main.java.task3.exceptions.WrongInputNickNameException;
 import main.java.task3.model.entity.Notation;
 
 import java.util.ArrayList;
@@ -24,8 +25,16 @@ public class Model {
         this.notations = notations;
     }
 
-    public void addNotation(Notation notation){
-
+    public void addNotation(Notation notation) throws WrongInputNickNameException{
+        checkValidNickName(notation);
         notations.add(notation);
+    }
+
+    private void checkValidNickName(Notation notation) throws WrongInputNickNameException {
+        for (Notation listNotation: notations) {
+            if (listNotation.getCommonName().getNickName().equals(notation.getCommonName().getNickName())){
+                throw new WrongInputNickNameException();
+            }
+        }
     }
 }

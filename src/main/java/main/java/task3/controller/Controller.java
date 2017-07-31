@@ -1,5 +1,6 @@
 package main.java.task3.controller;
 
+import main.java.task3.exceptions.WrongInputNickNameException;
 import main.java.task3.model.Model;
 import main.java.task3.view.View;
 
@@ -22,6 +23,7 @@ public class Controller {
         Scanner scanner = new Scanner(System.in);
 
         inputNote(scanner);
+        inputNote(scanner);
 
         view.printResultMessages();
         view.printMessage(model.getNotations().toString());
@@ -31,7 +33,11 @@ public class Controller {
         ScannerController scannerController = new ScannerController(scanner, view);
         boolean finished = false;
         while (!finished) {
-            model.addNotation(scannerController.createNotation());
+            try {
+                model.addNotation(scannerController.createNotation());
+            } catch (WrongInputNickNameException e) {
+                scannerController.inputNewNickName();
+            }
             finished = true;
 
         }

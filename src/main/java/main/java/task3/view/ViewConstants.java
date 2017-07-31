@@ -17,5 +17,7 @@ public interface ViewConstants {
     String HOUSE_NUMBER= "house number";
     String STREET= "street";
     String WRONG_INPUT = "Wrong input.";
+    String NICK_NAME_ALREADY_EXIST = "Nick name is already exist.";
+    String ANOTHER = "another";
     String RESULT = "Your notation";
 }

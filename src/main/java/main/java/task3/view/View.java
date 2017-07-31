@@ -58,6 +58,10 @@ public class View {
         printMessage(concat(ENTER, SPACE, WRONG_INPUT, DOT));
     }
 
+    public void printWrogInputNickName(){
+        printMessage(concat(WRONG_INPUT, SPACE, NICK_NAME_ALREADY_EXIST, SPACE, ENTER, SPACE, ANOTHER, NICK_NAME, DOT));
+    }
+
     public void printResultMessages(){
         printMessage(concat(RESULT, COLON));
     }

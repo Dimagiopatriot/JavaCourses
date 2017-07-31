@@ -81,6 +81,14 @@ public class ScannerController {
         return res;
     }
 
+    public void inputNewNickName(){
+        view.printWrogInputNickName();
+        view.printInputNickNameMessages();
+        nickName = inputData(NICKNAME_REG_EX);
+        notation.getCommonName().setNickName(nickName);
+
+    }
+
     public boolean checkInputString(String str, String regex){
         return str.matches(regex);
     }
