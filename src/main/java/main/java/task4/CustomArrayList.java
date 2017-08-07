@@ -11,16 +11,16 @@ public class CustomArrayList<E> {
 
     private List<E> baseArrayList = new ArrayList<E>();
 
-    public void add(E e){
-        baseArrayList.add(e);
+    public boolean add(E e){
+        return baseArrayList.add(e);
     }
 
     public void add(int index, E e){
         baseArrayList.add(index, e);
     }
 
-    public void addAll(Collection<? extends E> e){
-        baseArrayList.addAll(e);
+    public boolean addAll(Collection<? extends E> e){
+        return baseArrayList.addAll(e);
     }
 
     public boolean contains(Object o){
