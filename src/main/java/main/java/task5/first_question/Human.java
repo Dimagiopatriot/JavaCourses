@@ -9,7 +9,11 @@ public class Human {
     State currentState;
 
     void setSituation(Situation situation) {
-        currentSituation = situation;
+        if (situation != null) {
+            currentSituation = situation;
+        } else {
+            throw new NullPointerException("Your situation is null");
+        }
     }
 
     void changeState(Situation situation) {
@@ -28,7 +32,7 @@ public class Human {
         }
     }
 
-    void behaviour(){
+    void behaviour() {
         changeState(currentSituation);
         currentState.behaviour();
     }
