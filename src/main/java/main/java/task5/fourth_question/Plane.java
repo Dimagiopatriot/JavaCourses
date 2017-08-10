@@ -1,10 +1,14 @@
 package main.java.task5.fourth_question;
 
+import main.java.task5.fourth_question.situations.OnTheGround;
+import main.java.task5.fourth_question.situations.Situation;
+import main.java.task5.fourth_question.weapons.Weapon;
+
 /**
  * Created by troll on 10.08.2017.
  */
 public class Plane {
-    Situation situation = Situation.ON_THE_GROUND;
+    Situation situation = new OnTheGround();
     Weapon weaponType;
     int ammo;
 
@@ -17,45 +21,13 @@ public class Plane {
     }
 
     public void setSituation(Situation situation) {
+        situation.setWeaponType(weaponType);
         this.situation = situation;
-    }
-
-    ShootingStrategy getShootingStrategy() {
-        ShootingStrategy shootingStrategy;
-        switch (situation) {
-            case ON_THE_GROUND:
-                shootingStrategy = new UnavailableShooting();
-                break;
-            case IN_THE_AIR:
-                shootingStrategy = checkWeaponType();
-                break;
-            default:
-                shootingStrategy = new UnavailableShooting();
-        }
-        return shootingStrategy;
-    }
-
-    ShootingStrategy checkWeaponType() {
-        ShootingStrategy shootingStrategy;
-        switch (weaponType) {
-            case GUN:
-                shootingStrategy = new GunShooting();
-                break;
-            case MACHINE_GUN:
-                shootingStrategy = new MachineGunShooting();
-                break;
-            case ROCKETS:
-                shootingStrategy = new RocketShooting();
-                break;
-            default:
-                shootingStrategy = new UnavailableShooting();
-        }
-        return shootingStrategy;
     }
 
     void shoot(){
         for (int i = 0; i < ammo; i++){
-            getShootingStrategy().shooting();
+            situation.getShootingStrategy().shooting();
         }
     }
 }
