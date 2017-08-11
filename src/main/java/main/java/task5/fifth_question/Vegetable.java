@@ -10,6 +10,18 @@ public class Vegetable extends Ingredient{
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Vegetable){
+            Vegetable anotherVegetable = (Vegetable) obj;
+            return this.name.equals(anotherVegetable.getName());
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "Vegetable{" +
                 "name='" + name + '\'' +
