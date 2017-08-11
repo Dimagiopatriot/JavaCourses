@@ -1,12 +1,18 @@
 package main.java.task5.first_question;
 
+import main.java.task5.first_question.situation.Situation;
+
 /**
  * Created by troll on 10.08.2017.
  */
 public class Human {
 
-    Situation currentSituation = Situation.AT_HOME;
+    Situation currentSituation;
     State currentState;
+
+    public Human(Situation currentSituation) {
+        this.currentSituation = currentSituation;
+    }
 
     void setSituation(Situation situation) {
         if (situation != null) {
@@ -16,24 +22,8 @@ public class Human {
         }
     }
 
-    void changeState(Situation situation) {
-        switch (situation) {
-            case ON_RIVER:
-                currentState = new Fisher();
-                break;
-            case ON_MUSHROOM_FIELD:
-                currentState = new Gatherer();
-                break;
-            case SEE_BEAST:
-                currentState = new Hunter();
-                break;
-            default:
-                throw new IllegalStateException("Sorry your human at home");
-        }
-    }
-
     void behaviour() {
-        changeState(currentSituation);
+        currentState = currentSituation.getHumanState();
         currentState.behaviour();
     }
 }
