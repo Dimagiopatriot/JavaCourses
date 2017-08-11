@@ -28,6 +28,38 @@ public class Salad {
         sauces.add(sauce);
     }
 
+    public void setFruits(List<Fruit> fruits) {
+        this.fruits = fruits;
+    }
+
+    public void setVegetables(List<Vegetable> vegetables) {
+        this.vegetables = vegetables;
+    }
+
+    public void setMeats(List<Meat> meats) {
+        this.meats = meats;
+    }
+
+    public void setSauces(List<Sauce> sauces) {
+        this.sauces = sauces;
+    }
+
+    public List<Fruit> getFruits() {
+        return fruits;
+    }
+
+    public List<Vegetable> getVegetables() {
+        return vegetables;
+    }
+
+    public List<Meat> getMeats() {
+        return meats;
+    }
+
+    public List<Sauce> getSauces() {
+        return sauces;
+    }
+
     @Override
     public String toString() {
         return "Salad{" +
