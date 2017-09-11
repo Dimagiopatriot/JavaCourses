@@ -1,0 +1,169 @@
+1. select count(*) as SUM from (select * from news union select * from reviews) t1;
+
+2. select nc_name, count(n_id) from news_categories left join news on n_category=nc_id group by nc_name order by nc_id;
+
+3. select rc_name, count(r_id) from reviews_categories left join reviews on r_category=rc_id group by rc_name order by rc_id;
+
+4. (select * from(select rc_name, max(r_dt) as last_date from reviews_categories left join reviews on r_category=rc_id group by rc_name) t1 where t1.last_date is not null) union
+(select * from (select nc_name, max(n_dt) as last_date from news_categories left join news on n_category=nc_id group by nc_name) t2 where t2.last_date is not null);
+
+5. select p_name, t2.b_id, b_url from banners join 
+(select * from 
+(select p_name, p_parent, b_id from pages left join m2m_banners_pages on pages.p_id=m2m_banners_pages.p_id) 
+t1 where t1.p_parent is null) 
+t2 on t2.b_id=banners.b_id;
+
+6. select p_name from 
+(select p_name, b_id, pages.p_id from pages left join m2m_banners_pages on pages.p_id = m2m_banners_pages.p_id group by pages.p_id)
+ t1 where t1.b_id is not null;
+ 
+7. select p_name from 
+(select p_name, b_id, pages.p_id from pages left join m2m_banners_pages on pages.p_id = m2m_banners_pages.p_id group by pages.p_id)
+ t1 where t1.b_id is null;
+ 
+8. select distinct(m2m_banners_pages.b_id), b_url from m2m_banners_pages left join banners on m2m_banners_pages.b_id=banners.b_id;
+
+9. select t2.b_id, b_url from banners join
+(select b_id from 
+(select banners.b_id, m2m_banners_pages.b_id as m2m_b_id from banners left join m2m_banners_pages on banners.b_id=m2m_banners_pages.b_id) 
+t1 where t1.m2m_b_id is null) t2 on banners.b_id=t2.b_id;
+
+10. select * from (select b_id, b_url, b_click/b_show * 100 as rate from banners) t1 where  t1.rate>= 80;
+
+11. select distinct p_name
+from pages
+join m2m_banners_pages using (p_id)
+join banners using (b_id)
+where b_text is not null;
+
+12. select distinct p_name
+from pages
+join m2m_banners_pages using (p_id)
+join banners using (b_id)
+where b_pic is not null;
+
+13. select distinct n_header as header, n_dt as date
+from news where year(n_dt) = 2011
+union
+select distinct r_header as header, r_dt as date
+from reviews where year(r_dt) = 2011;
+
+
+14. select category from 
+(select distinct nc_name as category, n_category 
+from news_categories
+left join news on n_category=nc_id) t1
+where t1.n_category is null
+union
+select category from 
+(select distinct rc_name as category, r_category 
+from reviews_categories
+left join reviews on r_category=rc_id) t2
+where t2.r_category is null;
+
+15. select distinct n_header, n_dt
+from news 
+join news_categories on (nc_id=n_category)
+where year(n_dt) = 2012 and nc_name = 'Логистика';
+
+16. select distinct year(n_dt) as year, count(*)
+from news group by year(n_dt);
+
+17. select b_url, b_id from banners where b_url in 
+(select b_url
+ from banners
+ group by b_url
+ having COUNT(*) > 1);
+ 
+ 18. select p_name, b_id, b_url from pages
+ join m2m_banners_pages using (p_id) 
+ join banners using (b_id)
+ where p_parent=1;
+
+19. select b_id, b_url, b_click/b_show as rate from banners
+where b_pic is not null order by rate desc;
+
+20. select header, min(date) as date 
+from 
+(select n_header as header, n_dt as date 
+from news 
+where n_dt in
+(select min(n_dt) as date 
+from news)
+union
+select r_header as header, r_dt as date 
+from reviews 
+where r_dt in
+(select min(r_dt) as date 
+from reviews)) t1;
+
+21. select b_url, b_id from banners where b_url in 
+(select b_url
+ from banners
+ group by b_url
+ having COUNT(*) = 1);
+ 
+22. select p_name, count(b_id) as banners_count from pages
+join m2m_banners_pages using (p_id)
+join banners using (b_id)
+group by p_name
+order by banners_count DESC, p_name ASC;
+
+23. select n_header as header, n_dt as date 
+from news 
+where n_dt in
+(select max(n_dt) as date 
+from news)
+union
+select r_header as header, r_dt as date 
+from reviews 
+where r_dt in
+(select max(r_dt) as date 
+from reviews);
+
+24. select b_id, b_url, b_text from banners
+where b_text = 
+(select  substring(b_url, 8)); 
+
+25. select p_name from pages
+join m2m_banners_pages using (p_id)
+join banners using (b_id)
+order by b_click/b_show DESC
+limit 1;
+
+26. select avg(b_click/b_show) from banners
+where b_show > 0;
+
+27. select avg(b_click/b_show) from banners
+where b_pic is null;
+
+28. select count(b_id) as COUNT from pages
+join m2m_banners_pages using (p_id)
+join banners using (b_id)
+where p_parent is null;
+
+29. select banners.b_id, b_url, max(count_outer) 
+from banners, (
+				select count(*) AS count_outer, b_id 
+                from m2m_banners_pages
+                group by b_id) t1
+where banners.b_id= t1.b_id and count_outer = (select max(count_inner) 
+                                                from (select count(*) as count_inner 
+                                              		  from m2m_banners_pages
+                                                	  group by b_id) t2)
+group by b_id;
+
+30. select p_name, count_outer 
+from pages, (
+			select p_id, count(*) as count_outer 
+			from m2m_banners_pages
+			group by p_id
+			) t1
+where pages.p_id = t1.p_id and count_outer = (
+										select max(count_inner) 
+                                        from (
+											select count(*) as count_inner 
+											from m2m_banners_pages
+											group by p_id
+											) t2
+										)
